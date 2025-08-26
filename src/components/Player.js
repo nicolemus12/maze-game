@@ -19,4 +19,30 @@ class Player {
         );
         this.constrainToScreen();
     }
+
+    handleInput() {
+        // continuous movement if keys are held
+        if (keyIsDown(65)) {
+            // 'A'
+            this.x -= this.speed;
+        }
+        if (keyIsDown(68)) {
+            // 'D'
+            this.x += this.speed;
+        }
+        if (keyIsDown(87)) {
+            // 'W'
+            this.y -= this.speed;
+        }
+        if (keyIsDown(83)) {
+            // 'S'
+            this.y += this.speed;
+        }
+    }
+
+    constrainToScreen() {
+        this.x = constrain(this.x, this.w / 2, width - this.w / 2);
+        this.y = constrain(this.y, this.h / 2, height - this.h / 2);
+    }
 }
+

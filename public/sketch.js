@@ -7,7 +7,7 @@ function preload() {
 
 function setup() {
   createCanvas(500, 500);
-  player = new Player(0, 20, 40, 40, celina)
+  player = new Player(30, 50, 70, 70, celina)
 }
 
 function draw() {
@@ -33,6 +33,6 @@ function draw() {
     text('EXIT', 40, 470);
 
   player.display(); // displays character
-  // player.handleInput(); // makes character move if wasd keys r held
+  player.handleInput(); // makes character move if wasd keys r held
 }
 
