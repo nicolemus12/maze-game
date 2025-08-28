@@ -4,7 +4,7 @@ class Player {
         this.y = y;
         this.w = w;
         this.h = h;
-        this.speed = 5; //sets a speed of 5 for player
+        this.speed = 3; //sets a speed of 5 for player
         this.character = character
 
     }
@@ -41,8 +41,8 @@ class Player {
     }
 
     constrainToScreen() {
-        this.x = constrain(this.x, this.w / 2, width - this.w / 2);
-        this.y = constrain(this.y, this.h / 2, height - this.h / 2);
+        this.x = constrain(this.x, this.w / 6, width - this.w / 2);
+        this.y = constrain(this.y, this.h / 4, height - this.h / 1.5);
     }
 }
 
