@@ -2,7 +2,7 @@ let player;
 let celina;
 
 function preload() {
-  celina = loadImage("/public/images/celina.png");
+  celina = loadImage("public/images/celina.png");
 }
 
 function setup() {
