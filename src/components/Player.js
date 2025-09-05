@@ -77,28 +77,42 @@ class Player {
     /*
     move: allows plays movement using WASD keys at the players speed
     */
-    move() {
+    move(line) {
 
-        if (keyIsDown(65)) {
-            // 'A'
-            this.x -= this.speed;
-        }
-        if (keyIsDown(68)) {
-            // 'D'
-            this.x += this.speed;
-        }
-        if (keyIsDown(87)) {
-            // 'W'
-            this.y -= this.speed;
-        }
-        if (keyIsDown(83)) {
-            // 'S'
-            this.y += this.speed;
+        if (!this.collided(line)) {
+            if (keyIsDown(65)) {
+                // 'A'
+                this.x -= this.speed;
+            }
+            if (keyIsDown(68)) {
+                // 'D'
+                this.x += this.speed;
+            }
+            if (keyIsDown(87)) {
+                // 'W'
+                this.y -= this.speed;
+            }
+            if (keyIsDown(83)) {
+                // 'S'
+                this.y += this.speed;
+            }
         }
     }
 
 
+    collided(line) {
+        const d1 = dist(this.x, this.y, line.getX1(), line.getY1());
+        const d2 = dist(this.x, this.y, line.getX2(), line.getY2());
 
+        const lineLength = line.getLength();
 
+        const buffer = 20;
+
+        if (d1 + d2 >= lineLength - buffer && d1 + d2 <= lineLength + buffer) {
+            return true;
+        }
+        return false;
+
+    }
 
 }
