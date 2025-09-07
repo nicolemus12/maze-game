@@ -16,7 +16,7 @@ function draw() {
   maze.drawMaze();
   
   player.displayCharacter(); // displays character
-  player.move(maze.getLine()); // makes character move if wasd keys r held
+  player.move(maze.lines[0]); // makes character move if wasd keys r held
 
 }
 

@@ -79,26 +79,54 @@ class Player {
     */
     move(line) {
 
-        if (!this.collided(line)) {
-            if (keyIsDown(65)) {
-                // 'A'
+        // 'A'
+        if (keyIsDown(65)) {
+            if (this.x < line.getX1() || this.x < line.getX2()) {
+                this.x -= this.speed;
+            } else if (this.collided(line)) {
+                this.x -= 0;
+            } else {
                 this.x -= this.speed;
             }
-            if (keyIsDown(68)) {
-                // 'D'
+        }
+
+        if (keyIsDown(68)) {
+            // 'D'
+            if (this.x > line.getX1() || this.x > line.getX2()) {
                 this.x += this.speed;
             }
-            if (keyIsDown(87)) {
-                // 'W'
-                this.y -= this.speed;
+            else if (this.collided(line)) {
+                this.x -= 0;
+            } else {
+                this.x += this.speed;
             }
-            if (keyIsDown(83)) {
-                // 'S'
+        }
+        if (keyIsDown(83)) {
+            // 'S'
+            if (this.y > line.getY1() || this.y > line.getY2()) {
+                this.y += this.speed;
+            }
+            else if (this.collided(line)) {
+                this.y -= 0;
+            }
+            else {
                 this.y += this.speed;
             }
         }
-    }
+        if (keyIsDown(87)) {
+            // 'W'
+           if (this.y < line.getY1() || this.y < line.getY2()) {
+                this.y -= this.speed;
+            }
+            else if (this.collided(line)) {
+                this.y -= 0;
+            }
+            else {
+                this.y -= this.speed;
+            }
+        }
 
+    }
 
     collided(line) {
         const d1 = dist(this.x, this.y, line.getX1(), line.getY1());
@@ -106,7 +134,7 @@ class Player {
 
         const lineLength = line.getLength();
 
-        const buffer = 20;
+        const buffer = 10;
 
         if (d1 + d2 >= lineLength - buffer && d1 + d2 <= lineLength + buffer) {
             return true;
