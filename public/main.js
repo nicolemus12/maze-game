@@ -45,7 +45,7 @@ This is a p5.js method that runs continuously frame by frame at a rate of 60 tim
 This will be used to draw graphics and animations and to update the game state based on user input.
 */
 function draw() {
-  background(220, 246, 252);
+  background(143, 255, 143);
   maze.drawMaze();
   
   player.displayCharacter(); // displays character
