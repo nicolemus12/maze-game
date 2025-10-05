@@ -1,8 +1,9 @@
 
 class Player {
     /*
-    constructor: creates player object
-
+    This file contains the Player class. It includes the getters, setters and methods for movement,
+    collisions, player display and screen boundaries. 
+    
     x,y: represents the x and y coordinates of player
     w,h: width and height of player
     name: a string represetning the name of character 
@@ -26,64 +27,59 @@ class Player {
     }
 
     getSpeed() {
-        return this.speed;
+        return this.speed; // returns type speed
     }
 
     getLives() {
-        return this.lives;
+        return this.lives; // returns type lives
     }
 
     getPowerUps() {
-        return this.powerUps;
+        return this.powerUps; // returns type power ups
     }
 
     getIngredients() {
-        return this.ingredients;
+        return this.ingredients; // returns type ingredients
     }
 
     setLives() {
-        this.lives = this.lives - 1
+        this.lives = this.lives - 1 
     }
 
     setSpeed(speed) {
-        this.speed = speed
+        this.speed = speed 
     }
 
     addIngredient(ingredient) {
-        this.ingredients.push(ingredient)
+        this.ingredients.push(ingredient) 
     }
 
     resetIngredients() {
-        this.ingredients = []
+        this.ingredients = [] //method that resets the ingredients 
     }
 
 
-    /*
-    displayCharacter: displays the character of specific design
-    */
+    // displayCharacter: displays the character of specific design
     displayCharacter() {
-        image(this.design, this.x, this.y, this.w, this.h); // image: built in p5.js method that displays 
+        image(this.design, this.x, this.y, this.w, this.h); 
         this.constrainToScreen();
     }
 
-    /*
-    constrainToScreen: keeps character within the bounds of the maze
-    */
+    //constrainToScreen: keeps character within the bounds of the maze
     constrainToScreen() {
         this.x = constrain(this.x, this.w / 6, width - this.w / 2);
         this.y = constrain(this.y, this.h / 4, height - this.h / 1.5);
     }
 
-    /*
-    move: allows plays movement using WASD keys at the players speed
-    */
-    move(line) {
+    
+    //move: allows player movement using WASD keys at the players speed
+    move(line, lines) {
 
         // 'A'
         if (keyIsDown(65)) {
             if (this.x < line.getX1() || this.x < line.getX2()) {
                 this.x -= this.speed;
-            } else if (this.collided(line)) {
+            } else if (this.collided(line, lines)) {
                 this.x -= 0;
             } else {
                 this.x -= this.speed;
@@ -95,7 +91,7 @@ class Player {
             if (this.x > line.getX1() || this.x > line.getX2()) {
                 this.x += this.speed;
             }
-            else if (this.collided(line)) {
+            else if (this.collided(line, lines)) {
                 this.x -= 0;
             } else {
                 this.x += this.speed;
@@ -106,7 +102,7 @@ class Player {
             if (this.y > line.getY1() || this.y > line.getY2()) {
                 this.y += this.speed;
             }
-            else if (this.collided(line)) {
+            else if (this.collided(line, lines)) {
                 this.y -= 0;
             }
             else {
@@ -115,10 +111,10 @@ class Player {
         }
         if (keyIsDown(87)) {
             // 'W'
-           if (this.y < line.getY1() || this.y < line.getY2()) {
+            if (this.y < line.getY1() || this.y < line.getY2()) {
                 this.y -= this.speed;
             }
-            else if (this.collided(line)) {
+            else if (this.collided(line, lines)) {
                 this.y -= 0;
             }
             else {
@@ -128,7 +124,8 @@ class Player {
 
     }
 
-    collided(line) {
+    //collided: checks to see if the player collides with the lines. 
+    collided(line, lines) {
         const d1 = dist(this.x, this.y, line.getX1(), line.getY1());
         const d2 = dist(this.x, this.y, line.getX2(), line.getY2());
 
