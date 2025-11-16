@@ -36,7 +36,7 @@ function setup() {
   maze = new Maze();
 
   // creates a player object
-  player = new Player(30, 40, 70, 70, "celina", celina)
+  player = new Player(30, 40, 50, 50, "celina", celina)
 
 }
 
@@ -49,8 +49,5 @@ function draw() {
   maze.drawMaze();
   
   player.displayCharacter(); // displays character
-  player.move(maze.lines[0], maze.lines); // makes character move if wasd keys r held
-
+  player.move(maze); // makes character move if wasd keys r held
 }
-
-

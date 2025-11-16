@@ -14,9 +14,11 @@ class Player {
         this.y = y;
         this.w = w;
         this.h = h;
+        this.radius = w/2
+        // this.radius = Math.sqrt((w/2) ** 2 + (h/2) ** 2);
         this.name = name;
         this.design = design;
-        this.speed = 3 // sets a speed of 3 for player
+        this.speed = 5 // sets a speed of 3 for player
         this.lives = 3; // sets initial lives to 3
         this.powerUps = []; // initialises player with no collected power ups
         this.ingredients = []; // initialises player with no collected ingredients 
@@ -58,10 +60,18 @@ class Player {
         this.ingredients = [] //method that resets the ingredients 
     }
 
-
     // displayCharacter: displays the character of specific design
     displayCharacter() {
-        image(this.design, this.x, this.y, this.w, this.h); 
+        // fill(255, 0, 0)
+        // stroke(0);
+        // circle(this.x, this.y, this.w)
+        
+        // noFill()
+        // stroke(0)
+        // strokeWeight(4)
+        // rect(this.x, this.y, this.w, this.h)
+        // circle(this.x, this.y, this.w);
+        image(this.design, this.x - this.w/2, this.y - this.h/2, this.w, this.h);
         this.constrainToScreen();
     }
 
@@ -73,71 +83,60 @@ class Player {
 
     
     //move: allows player movement using WASD keys at the players speed
-    move(line, lines) {
+    move(maze) {
 
-        // 'A'
+        let dx = 0;
+        let dy = 0;
+
+        // A
         if (keyIsDown(65)) {
-            if (this.x < line.getX1() || this.x < line.getX2()) {
-                this.x -= this.speed;
-            } else if (this.collided(line, lines)) {
-                this.x -= 0;
-            } else {
-                this.x -= this.speed;
+            dx -= this.speed;
+        }
+        // D
+        if (keyIsDown(68)) {
+            dx += this.speed;
+        }
+        // S
+        if (keyIsDown(83)) {
+            dy += this.speed;
+        }
+        // W
+        if (keyIsDown(87)) {
+            dy -= this.speed;
+        }
+
+        if (dx === 0 && dy === 0) return;
+
+        let nextX = this.x + dx;
+        let nextY = this.y + dy;
+
+        for (let line of maze.lines) {
+            let d = line.distanceToPlayer(nextX, nextY);
+
+            if (d < this.radius) {
+                return;
             }
         }
 
-        if (keyIsDown(68)) {
-            // 'D'
-            if (this.x > line.getX1() || this.x > line.getX2()) {
-                this.x += this.speed;
-            }
-            else if (this.collided(line, lines)) {
-                this.x -= 0;
-            } else {
-                this.x += this.speed;
-            }
-        }
-        if (keyIsDown(83)) {
-            // 'S'
-            if (this.y > line.getY1() || this.y > line.getY2()) {
-                this.y += this.speed;
-            }
-            else if (this.collided(line, lines)) {
-                this.y -= 0;
-            }
-            else {
-                this.y += this.speed;
-            }
-        }
-        if (keyIsDown(87)) {
-            // 'W'
-            if (this.y < line.getY1() || this.y < line.getY2()) {
-                this.y -= this.speed;
-            }
-            else if (this.collided(line, lines)) {
-                this.y -= 0;
-            }
-            else {
-                this.y -= this.speed;
-            }
-        }
+        this.x = nextX;
+        this.y = nextY;
 
     }
 
     //collided: checks to see if the player collides with the lines. 
-    collided(line, lines) {
-        const d1 = dist(this.x, this.y, line.getX1(), line.getY1());
-        const d2 = dist(this.x, this.y, line.getX2(), line.getY2());
+    // collided(line, lines) {
+    //     const d1 = dist(this.x, this.y, line.getX1(), line.getY1());
+    //     const d2 = dist(this.x, this.y, line.getX2(), line.getY2());
 
-        const lineLength = line.getLength();
+    //     const lineLength = line.getLength();
 
-        const buffer = 10;
+    //     const buffer = 10;
 
-        if (d1 + d2 >= lineLength - buffer && d1 + d2 <= lineLength + buffer) {
-            return true;
-        }
-        return false;
+    //     if (d1 + d2 >= lineLength - buffer && d1 + d2 <= lineLength + buffer) {
+    //         return true;
+    //     }
+    //     return false;
 
-    }
+    // }
 
 }

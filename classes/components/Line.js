@@ -37,4 +37,34 @@ class Line {
         line(this.x1, this.y1, this.x2, this.y2)
     }
 
+    distanceToPlayer(playerX, playerY) {
+        const x1 = this.x1
+        const y1 = this.y1
+        const x2 = this.x2
+        const y2 = this.y2
+
+        //line segment vector
+        const A = playerX - x1;
+        const B = playerY - y1;
+        const C = x2 - x1;
+        const D = y2 - y1;
+
+        const dotProduct = A*C + B*D;
+        const lenSquared = C*C + D*D;
+        let t = -1;
+
+        if(lenSquared !== 0) {
+            t = dotProduct / lenSquared;
+        }
+
+        t = constrain(t, 0, 1);
+
+        //Closest point on segment
+        const closestX = x1 + t * C;
+        const closestY = y1 + t * D;
+
+        //Distance from player to cloest point
+        return dist(playerX, playerY, closestX, closestY);
+    }
+
 }
