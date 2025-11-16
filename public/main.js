@@ -46,7 +46,7 @@ This will be used to draw graphics and animations and to update the game state b
 */
 function draw() {
   background(143, 255, 143);
-  maze.drawMaze();
+  maze.drawMaze('3');
   
   player.displayCharacter(); // displays character
   player.move(maze); // makes character move if wasd keys r held
