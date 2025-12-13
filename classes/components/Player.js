@@ -95,21 +95,26 @@ class Player {
             dy -= this.speed;
         }
 
-        let nextX = this.x + dx;
-        let nextY = this.y + dy;
+        let nextPlayerX = this.x + dx;
+        let nextPlayerY = this.y + dy;
 
-        for (let line of maze.lines) {
-            let d = line.distanceToPlayer(nextX, nextY);
-
-            if (d < this.radius) {
-                return;
-            }
+        if (this.collidesWithMaze(nextPlayerX, nextPlayerY, maze)) {
+            return;
         }
         
-        this.x = nextX;
-        this.y = nextY;
+        this.x = nextPlayerX;
+        this.y = nextPlayerY;
 
     }
 
+    collidesWithMaze(nextPlayerX, nextPlayerY, maze) {
+        for (let line of maze.lines) {
+            let d = line.distanceToPlayer(nextPlayerX, nextPlayerY);
 
+            if (d < this.radius) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
