@@ -72,9 +72,8 @@ class Player {
         this.y = constrain(this.y, this.h / 4, height - this.h / 1.5);
     }
 
-    
     //move: allows player movement using WASD keys at the players speed
-    move(maze, ingredient) {
+    move(maze) {
 
         let dx = 0;
         let dy = 0;
@@ -96,8 +95,6 @@ class Player {
             dy -= this.speed;
         }
 
-        // if (dx === 0 && dy === 0) return;
-
         let nextX = this.x + dx;
         let nextY = this.y + dy;
 
@@ -111,13 +108,6 @@ class Player {
         
         this.x = nextX;
         this.y = nextY;
-
-        for (let ingredient of maze.ingredients) {
-            if (ingredient.distanceToPlayer()) {
-                console.log("collected")
-            }
-        }
-
 
     }
 

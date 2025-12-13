@@ -14,7 +14,8 @@ This is so that they can be used in any of the methods within this file.
 */
 let player;
 let celina;
-let ingredient;
+const ingredients = new Map();
+const powerUps = new Map();
 
 /*
 This is a p5.js method that will load all image and sound assets.
@@ -23,7 +24,15 @@ the images and sound assets are loaded properly to avoid errors from
 blank images and non-existent assets.
 */
 function preload() {
+  // load player images
   celina = loadImage("public/images/avatars/celina.png");
+
+  // load powerUp images
+  powerUps.set("heart", loadImage("public/images/powerups/heart.png"));
+  powerUps.set("speed",loadImage("public/images/powerups/lightning.png"));
+
+  // load ingredient images
+  ingredients.set("beefPatty", loadImage("public/images/ingredients/beef_patty.png"))
 }
 
 /* 
@@ -34,7 +43,7 @@ function setup() {
   createCanvas(500, 500);
 
    // creates a maze object
-  maze = new Maze();
+  maze = new Maze(ingredients, powerUps);
 
   // creates a player object
   player = new Player(30, 40, 50, 50, "celina", celina)

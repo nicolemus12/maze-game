@@ -4,10 +4,13 @@ class Maze {
     drawMaze which loops through the array of lines and draws them. There is also 
     a getLine method which returns the line.
     */
-    constructor() {
+    constructor(ingredients, powerUps) {
+        this.ingredients = ingredients;
+        this.powerUps = powerUps
+
         this.lines = [];
-        this.ingredients = [];
-        this.powerups = [];
+        this.recipeIngredients = [];
+        this.levelPowerUps = [];
     }
 
     // loops through the array of lines 
@@ -52,9 +55,9 @@ class Maze {
             this.lines[i].drawLine();
         }
 
-        // for (let i = 0; i < this.ingredients.length; i++) {
-        //     this.ingredients[i].displayIngredient();
-        // }
+        for (let i = 0; i < this.recipeIngredients.length; i++) {
+            this.recipeIngredients[i].displayCollectable()
+        }
 
     }
 
@@ -70,8 +73,7 @@ class Maze {
         this.lines.push(new Line(500, 350, 250, 350));
         this.lines.push(new Line(120, 430, 0, 430));
 
-        this.ingredients = [];
-        this.ingredients.push(new Ingredient(80, 130, 20, 20));
+        this.recipeIngredients = [];
     }
 
     level2() {
@@ -85,8 +87,7 @@ class Maze {
         this.lines.push(new Line(500, 300, 100, 300));
         this.lines.push(new Line(500, 440, 385, 440));
 
-        this.ingredients = [];
-        this.ingredients.push(new Ingredient(80, 130, 20, 20));
+        this.recipeIngredients = [];
     }
 
     level3() {
@@ -101,8 +102,11 @@ class Maze {
         this.lines.push(new Line(380, 2, 380, 360));
         this.lines.push(new Line(290, 430, 290, 360));
 
-        this.ingredients = [];
-        this.ingredients.push(new Ingredient(80, 130, 20, 20, "egg", "egg"));
+        this.recipeIngredients = [];
+
+        this.recipeIngredients.push(
+            new Ingredient(80, 130, 20, 20, "beefPatty", this.ingredients.get("beefPatty"))
+        );
     }
 
     // Medium levels

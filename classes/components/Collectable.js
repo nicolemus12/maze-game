@@ -28,10 +28,15 @@ class Collectable {
         this.constrainToScreen();
     }
 
+    //constrainToScreen: keeps character within the bounds of the maze
+    constrainToScreen() {
+        this.x = constrain(this.x, this.w / 6, width - this.w / 2);
+        this.y = constrain(this.y, this.h / 4, height - this.h / 1.5);
+    }
+
     //calculates the distance between the player and the collectable
     distanceToPlayer(playerX, playerY) {
         return dist(playerX, playerY, this.x, this.y);
     }
 
 }
-
