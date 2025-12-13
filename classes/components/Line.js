@@ -60,11 +60,11 @@ class Line {
         t = constrain(t, 0, 1);
 
         //Closest point on segment
-        const closestX = x1 + t * C;
-        const closestY = y1 + t * D;
+        const closestLineX = x1 + t * C;
+        const closestLineY = y1 + t * D;
 
         //Distance from player to cloest point
-        return dist(playerX, playerY, closestX, closestY);
+        return dist(playerX, playerY, closestLineX, closestLineY);
     }
 
 }

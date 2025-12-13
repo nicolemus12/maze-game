@@ -14,6 +14,7 @@ This is so that they can be used in any of the methods within this file.
 */
 let player;
 let celina;
+let ingredient;
 
 /*
 This is a p5.js method that will load all image and sound assets.
@@ -22,7 +23,7 @@ the images and sound assets are loaded properly to avoid errors from
 blank images and non-existent assets.
 */
 function preload() {
-  celina = loadImage("public/images/celina.png");
+  celina = loadImage("public/images/avatars/celina.png");
 }
 
 /* 
