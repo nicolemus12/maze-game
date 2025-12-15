@@ -20,10 +20,16 @@ class Collectable {
         this.name = name;
         this.design = design;
         this.type = type;
+
+        this.isCollected = false;
     }
 
     // displayCollectable: displays the collectable of the specific design
     displayCollectable() {
+        if (this.isCollected) {
+            return
+        }
+
         image(this.design, this.x - this.w / 2, this.y - this.h / 2, this.w, this.h);
         this.constrainToScreen();
     }

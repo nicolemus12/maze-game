@@ -32,7 +32,10 @@ function preload() {
   powerUps.set("speed",loadImage("public/images/powerups/lightning.png"));
 
   // load ingredient images
-  ingredients.set("beefPatty", loadImage("public/images/ingredients/beef_patty.png"))
+  ingredients.set("beef_patty", loadImage("public/images/ingredients/beef_patty.png"))
+  ingredients.set("burger_buns", loadImage("public/images/ingredients/burger_buns.png"))
+  ingredients.set("cheese_slices", loadImage("public/images/ingredients/cheese_slices.png"))
+
 }
 
 /* 
@@ -44,6 +47,9 @@ function setup() {
 
    // creates a maze object
   maze = new Maze(ingredients, powerUps);
+  
+  // load maze levels
+  maze.level3();
 
   // creates a player object
   player = new Player(30, 40, 50, 50, "celina", celina)

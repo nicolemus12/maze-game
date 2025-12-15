@@ -105,8 +105,14 @@ class Maze {
         this.recipeIngredients = [];
 
         this.recipeIngredients.push(
-            new Ingredient(80, 130, 20, 20, "beefPatty", this.ingredients.get("beefPatty"))
+            new Ingredient(150, 130, 50, 50, "beef_patty", this.ingredients.get("beef_patty"))
         );
+        this.recipeIngredients.push(
+            new Ingredient(50, 430, 50, 50, "burger_buns", this.ingredients.get("burger_buns"))
+        )
+        this.recipeIngredients.push(
+            new Ingredient(450, 60, 50, 50, "cheese_slices", this.ingredients.get("cheese_slices"))
+        )
     }
 
     // Medium levels

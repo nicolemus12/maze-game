@@ -13,6 +13,6 @@ type: the type of the powerUp
 
 class PowerUp extends Collectable {
     constructor(x, y, w, h, name, design) {
-        super(x, y, w, h, name, design, "powerup")
+        super(x, y, w, h, name, design, "powerUp")
     }
 }

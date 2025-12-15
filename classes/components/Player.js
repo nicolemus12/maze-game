@@ -14,14 +14,14 @@ class Player {
         this.y = y;
         this.w = w;
         this.h = h;
-        this.radius = w/2
+        this.radius = w / 2
 
         this.name = name;
         this.design = design;
         this.speed = 5 // sets a speed of 3 for player
         this.lives = 3; // sets initial lives to 3
         this.powerUps = []; // initialises player with no collected power ups
-        this.ingredients = []; // initialises player with no collected ingredients 
+        this.collectedIngredients = new Set(); // initialises player with no collected ingredients 
     }
 
     getName() {
@@ -41,28 +41,28 @@ class Player {
     }
 
     getIngredients() {
-        return this.ingredients; // returns type ingredients
+        return this.collectedIngredients; // returns type ingredients
     }
 
     setLives() {
-        this.lives = this.lives - 1 
+        this.lives = this.lives - 1
     }
 
     setSpeed(speed) {
-        this.speed = speed 
+        this.speed = speed
     }
 
     addIngredient(ingredient) {
-        this.ingredients.push(ingredient) 
+        this.collectedIngredients.push(ingredient)
     }
 
     resetIngredients() {
-        this.ingredients = [] //method that resets the ingredients 
+        this.collectedIngredients = [] //method that resets the ingredients 
     }
 
     // displayCharacter: displays the character of the specific design
     displayCharacter() {
-        image(this.design, this.x - this.w/2, this.y - this.h/2, this.w, this.h);
+        image(this.design, this.x - this.w / 2, this.y - this.h / 2, this.w, this.h);
         this.constrainToScreen();
     }
 
@@ -101,7 +101,13 @@ class Player {
         if (this.collidesWithMaze(nextPlayerX, nextPlayerY, maze)) {
             return;
         }
-        
+
+        const collectable = this.getCollidingCollectable(nextPlayerX, nextPlayerY, maze)
+
+        if (collectable){
+            this.handleCollectablePickUp(collectable, maze);
+        }
+
         this.x = nextPlayerX;
         this.y = nextPlayerY;
 
@@ -117,4 +123,30 @@ class Player {
         }
         return false;
     }
+
+    getCollidingCollectable(nextPlayerX, nextPlayerY, maze) {
+        for (let collectable of maze.recipeIngredients) {
+            const d = collectable.distanceToPlayer(nextPlayerX, nextPlayerY)
+            const combinedRadius = this.radius + collectable.radius
+
+            if (d < combinedRadius) {
+                return collectable;
+            }
+        } 
+        return null;
+    }
+
+    handleCollectablePickUp(collectable, maze) {
+        switch (collectable.type){
+            case "ingredient":
+                this.collectedIngredients.add(collectable.name);
+
+
+        }
+        
+        console.log(collectable.isCollected)
+        collectable.isCollected = true;
+        console.log(collectable.isCollected)
+    }
+
 }
