@@ -141,12 +141,10 @@ class Player {
             case "ingredient":
                 this.collectedIngredients.add(collectable.name);
 
-
         }
         
-        console.log(collectable.isCollected)
         collectable.isCollected = true;
-        console.log(collectable.isCollected)
+
     }
 
 }

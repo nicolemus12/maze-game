@@ -49,7 +49,15 @@ function setup() {
   maze = new Maze(ingredients, powerUps);
   
   // load maze levels
+  maze.level1();
+  maze.level2();
   maze.level3();
+  maze.level4();
+  maze.level5();
+  maze.level6();
+  maze.level7();
+  maze.level8();
+  maze.level9();
 
   // creates a player object
   player = new Player(30, 40, 50, 50, "celina", celina)
