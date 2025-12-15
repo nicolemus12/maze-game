@@ -146,7 +146,7 @@ class Player {
                     switch(maze.level){
                         case "1":
                             this.collectedIngredients.clear();
-                            maze.level = "3";
+                            maze.level = "2";
                             break;
                         case "2":
                             this.collectedIngredients.clear();
