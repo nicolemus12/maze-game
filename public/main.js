@@ -35,6 +35,9 @@ function preload() {
   ingredients.set("beef_patty", loadImage("public/images/ingredients/beef_patty.png"))
   ingredients.set("burger_buns", loadImage("public/images/ingredients/burger_buns.png"))
   ingredients.set("cheese_slices", loadImage("public/images/ingredients/cheese_slices.png"))
+  ingredients.set("bread_loaf", loadImage("public/images/ingredients/bread_loaf.png"))
+  ingredients.set("ham_slices", loadImage("public/images/ingredients/ham_slices.png"))
+
 
 }
 
@@ -70,7 +73,7 @@ This will be used to draw graphics and animations and to update the game state b
 */
 function draw() {
   background(143, 255, 143);
-  maze.drawMaze('3');
+  maze.drawMaze();
   
   player.displayCharacter(); // displays character
   player.move(maze); // makes character move if wasd keys r held

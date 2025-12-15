@@ -6,7 +6,8 @@ class Maze {
     */
     constructor(ingredients, powerUps) {
         this.ingredients = ingredients;
-        this.powerUps = powerUps
+        this.powerUps = powerUps;
+        this.level = "1"
         this.levels = new Map();
 
         this.lines = [];
@@ -21,52 +22,58 @@ class Maze {
         // switch statement which adds lines to the lines property depending on the level
         switch (level) {
             case '1':
-                level = "1"
+                this.level = "1"
                 break;
             case '2':
-                level = "2"
+                this.level = "2"
                 break;
             case '3':
-                level = "3"
+                this.level = "3"
                 break;
             case '4':
-                level = "4"
+                this.level = "4"
                 break;
             case '5':
-                level = "5"
+                this.level = "5"
                 break;
             case '6':
-                level = "6"
+                this.level = "6"
                 break;
             case '7':
-                level = "7"
+                this.level = "7"
                 break;
             case '8':
-                level = "8"
+                this.level = "8"
                 break;
             case '9':
-                level = "9"
+                this.level = "9"
                 break;
             default:
                 break;
         }
 
         // loop drawing each line in the lines array
-        this.lines = this.levels.get(level).get("lines");
+        this.lines = this.levels.get(this.level).get("lines");
         for (let i = 0; i < this.lines.length; i++) {
             this.lines[i].drawLine();
         }
 
         // loop drawing each ingredients in the recipeIngredients array
-        this.recipeIngredients = this.levels.get(level).get("recipeIngredients");
+        this.recipeIngredients = this.levels.get(this.level).get("recipeIngredients");
         for (let i = 0; i < this.recipeIngredients.length; i++) {
             this.recipeIngredients[i].displayCollectable()
         }
 
+        // loop drawing each ingredients in the recipeIngredients array
+        this.levelPowerUps = this.levels.get(this.level).get("levelPowerUps");
+        for (let i = 0; i < this.levelPowerUps.length; i++) {
+            this.levelPowerUps[i].displayCollectable()
+        }
     }
 
     // Easy Levels
     level1() {
+        //ham sandwich
         let levelData = new Map();
 
         let lines = [];
@@ -81,6 +88,12 @@ class Maze {
         levelData.set("lines", lines);
 
         let recipeIngredients = [];
+        recipeIngredients.push(
+            new Ingredient(400, 400, 50, 50, "ham_slices", this.ingredients.get("ham_slices"))
+        );
+        recipeIngredients.push(
+            new Ingredient(350, 100, 50, 50, "bread_loaf", this.ingredients.get("bread_loaf"))
+        )
         levelData.set("recipeIngredients", recipeIngredients);
 
         let levelPowerUps = [];
