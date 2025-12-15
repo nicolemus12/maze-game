@@ -104,13 +104,14 @@ class Player {
 
         const collectable = this.getCollidingCollectable(nextPlayerX, nextPlayerY, maze)
 
-        if (collectable){
+        if (collectable) {
             this.handleCollectablePickUp(collectable, maze);
         }
 
         this.x = nextPlayerX;
         this.y = nextPlayerY;
 
+        this.levelUp(maze)
     }
 
     collidesWithMaze(nextPlayerX, nextPlayerY, maze) {
@@ -132,56 +133,14 @@ class Player {
             if (d < combinedRadius) {
                 return collectable;
             }
-        } 
+        }
         return null;
     }
 
     handleCollectablePickUp(collectable, maze) {
-        let totalIngredients = maze.levels.get(maze.level).get("recipeIngredients").length
-
         switch (collectable.type) {
             case "ingredient":
                 this.collectedIngredients.add(collectable.name);
-                if(this.collectedIngredients.size == totalIngredients) {
-                    switch(maze.level){
-                        case "1":
-                            this.collectedIngredients.clear();
-                            maze.level = "2";
-                            break;
-                        case "2":
-                            this.collectedIngredients.clear();
-                            maze.level = "3";
-                            break;
-                        case "3":
-                            this.collectedIngredients.clear();
-                            maze.level = "4";
-                            break;
-                        case "4":
-                            this.collectedIngredients.clear();
-                            maze.level = "5";
-                            break;
-                        case "5":
-                            this.collectedIngredients.clear();
-                            maze.level = "6";
-                            break;
-                        case "6":
-                            this.collectedIngredients.clear();
-                            maze.level = "7";
-                            break;
-                        case "7":
-                            this.collectedIngredients.clear();
-                            maze.level = "8";
-                            break;
-                        case "8":
-                            this.collectedIngredients.clear();
-                            maze.level = "9";
-                            break;
-                        case "9":
-                            this.collectedIngredients.clear();
-                            console.log("YOU WIN!")
-                            break;
-                    }
-                }
                 break;
             case "powerUp":
                 break;
@@ -189,6 +148,51 @@ class Player {
 
         collectable.isCollected = true;
 
+    }
+
+    levelUp(maze) {
+        let totalIngredients = maze.levels.get(maze.level).get("recipeIngredients").length
+
+        if (this.collectedIngredients.size == totalIngredients) {
+            switch (maze.level) {
+                case "1":
+                    this.collectedIngredients.clear();
+                    maze.level = "2";
+                    break;
+                case "2":
+                    this.collectedIngredients.clear();
+                    maze.level = "3";
+                    break;
+                case "3":
+                    this.collectedIngredients.clear();
+                    maze.level = "4";
+                    break;
+                case "4":
+                    this.collectedIngredients.clear();
+                    maze.level = "5";
+                    break;
+                case "5":
+                    this.collectedIngredients.clear();
+                    maze.level = "6";
+                    break;
+                case "6":
+                    this.collectedIngredients.clear();
+                    maze.level = "7";
+                    break;
+                case "7":
+                    this.collectedIngredients.clear();
+                    maze.level = "8";
+                    break;
+                case "8":
+                    this.collectedIngredients.clear();
+                    maze.level = "9";
+                    break;
+                case "9":
+                    this.collectedIngredients.clear();
+                    console.log("YOU WIN!")
+                    break;
+            }
+        }
     }
 
 }

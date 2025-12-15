@@ -113,7 +113,7 @@ class Maze {
         lines.push(new Line(80, 400, 80, 500));
         lines.push(new Line(400, 180, 0, 180));
         lines.push(new Line(500, 300, 100, 300));
-        lines.push(new Line(500, 440, 385, 440));
+
         levelData.set("lines", lines);
 
         let recipeIngredients = [];
