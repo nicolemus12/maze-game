@@ -21,7 +21,7 @@ class Player {
         this.speed = 5 // sets a speed of 3 for player
         this.lives = 3; // sets initial lives to 3
         this.powerUps = []; // initialises player with no collected power ups
-        this.collectedIngredients = new Set(); // initialises player with no collected ingredients 
+        this.collectedIngredients = []; // initialises player with no collected ingredients 
     }
 
     getName() {
@@ -104,14 +104,14 @@ class Player {
 
         const collectable = this.getCollidingCollectable(nextPlayerX, nextPlayerY, maze)
 
-        if (collectable) {
+        if (collectable && !collectable.isCollected) {
             this.handleCollectablePickUp(collectable, maze);
         }
 
         this.x = nextPlayerX;
         this.y = nextPlayerY;
 
-        this.levelUp(maze)
+        // this.levelUp(maze)
     }
 
     collidesWithMaze(nextPlayerX, nextPlayerY, maze) {
@@ -140,7 +140,7 @@ class Player {
     handleCollectablePickUp(collectable, maze) {
         switch (collectable.type) {
             case "ingredient":
-                this.collectedIngredients.add(collectable.name);
+                this.collectedIngredients.push(collectable.name);
                 break;
             case "powerUp":
                 break;
@@ -148,47 +148,49 @@ class Player {
 
         collectable.isCollected = true;
 
+        console.log(this.collectedIngredients)
+
     }
 
     levelUp(maze) {
         let totalIngredients = maze.levels.get(maze.level).get("recipeIngredients").length
 
-        if (this.collectedIngredients.size == totalIngredients) {
+        if (this.collectedIngredients.length == totalIngredients) {
             switch (maze.level) {
                 case "1":
-                    this.collectedIngredients.clear();
+                    this.collectedIngredients = [];
                     maze.level = "2";
                     break;
                 case "2":
-                    this.collectedIngredients.clear();
+                    this.collectedIngredients = [];
                     maze.level = "3";
                     break;
                 case "3":
-                    this.collectedIngredients.clear();
+                    this.collectedIngredients = [];
                     maze.level = "4";
                     break;
                 case "4":
-                    this.collectedIngredients.clear();
+                    this.collectedIngredients = [];
                     maze.level = "5";
                     break;
                 case "5":
-                    this.collectedIngredients.clear();
+                    this.collectedIngredients = [];
                     maze.level = "6";
                     break;
                 case "6":
-                    this.collectedIngredients.clear();
+                    this.collectedIngredients = [];
                     maze.level = "7";
                     break;
                 case "7":
-                    this.collectedIngredients.clear();
+                    this.collectedIngredients = [];
                     maze.level = "8";
                     break;
                 case "8":
-                    this.collectedIngredients.clear();
+                    this.collectedIngredients = [];
                     maze.level = "9";
                     break;
                 case "9":
-                    this.collectedIngredients.clear();
+                    this.collectedIngredients = [];
                     console.log("YOU WIN!")
                     break;
             }
