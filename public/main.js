@@ -16,6 +16,7 @@ let player;
 let celina;
 const ingredients = new Map();
 const powerUps = new Map();
+const enemies = [];
 
 /*
 This is a p5.js method that will load all image and sound assets.
@@ -38,6 +39,9 @@ function preload() {
   ingredients.set("bread_loaf", loadImage("public/images/ingredients/bread_loaf.png"))
   ingredients.set("ham_slices", loadImage("public/images/ingredients/ham_slices.png"))
 
+  // load enemy images
+  enemies.push(loadImage("public/images/ingredients/chicken_thighs.png"));
+  enemies.push(loadImage("public/images/ingredients/tortilla.png"))
 
 }
 
@@ -48,8 +52,11 @@ It is used to initialise the canvas and the objects needed for the program.
 function setup() {
   createCanvas(500, 500);
 
-   // creates a maze object
-  maze = new Maze(ingredients, powerUps);
+  // creates a player object
+  player = new Player(30, 40, 50, 50, "celina", celina)
+
+  // creates a maze object
+  maze = new Maze(ingredients, powerUps, enemies);
   
   // load maze levels
   maze.level1();
@@ -61,9 +68,6 @@ function setup() {
   maze.level7();
   maze.level8();
   maze.level9();
-
-  // creates a player object
-  player = new Player(30, 40, 50, 50, "celina", celina)
 
 }
 

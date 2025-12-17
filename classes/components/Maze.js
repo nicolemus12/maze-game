@@ -4,15 +4,17 @@ class Maze {
     drawMaze which loops through the array of lines and draws them. There is also 
     a getLine method which returns the line.
     */
-    constructor(ingredients, powerUps) {
-        this.ingredients = ingredients;
-        this.powerUps = powerUps;
-        this.level = "3"
-        this.levels = new Map();
+    constructor(ingredients, powerUps, enemies) {
+        this.ingredients = ingredients; // map of all available ingredients
+        this.powerUps = powerUps; // map of all available poweups
+        this.enemies = enemies; // list of all available enemies
 
-        this.lines = [];
-        this.recipeIngredients = [];
-        this.levelPowerUps = [];
+        this.level = "3";
+        this.levels = new Map(); // map contain data for each level
+
+        this.lines = []; // array to store lines (walls of a maze) in a level 
+        this.recipeIngredients = []; // array to store list of ingredients for a recipe
+        this.levelPowerUps = []; // array to store powerups in a level
     }
 
     // loops through the array of lines 
@@ -51,6 +53,11 @@ class Maze {
             default:
                 break;
         }
+
+        // display and move enemy
+        const enemy = this.levels.get(this.level).get("enemy");
+        enemy.displayCharacter();
+        enemy.move();
 
         // loop drawing each line in the lines array
         this.lines = this.levels.get(this.level).get("lines");
@@ -126,7 +133,13 @@ class Maze {
     }
 
     level3() {
+        filter(INVERT);
         let levelData = new Map();
+
+        // select random enemy from enemies array
+        const index = Math.floor(Math.random() * this.enemies.length);
+        let enemy = new Enemy(490, 150, 30, 30, "enemy1", this.enemies[index])
+        levelData.set("enemy", enemy);
 
         let lines = [];
         lines.push(new Line(100, 90, 0, 90));
