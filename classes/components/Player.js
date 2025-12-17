@@ -10,7 +10,8 @@ class Player extends Character {
     design: image of the character taken from image folder
     */
     constructor(x, y, w, h, name, design) {
-        super(x, y, w, h, name, design, 3) // sets a speed of 3 for player
+        super(x, y, w, h, design, 3) // sets a speed of 3 for player
+        this.name = name;
         this.lives = 3; // sets initial lives to 3
 
         this.powerUps = []; // initialises player with no collected power ups

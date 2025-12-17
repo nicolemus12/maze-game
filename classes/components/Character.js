@@ -1,6 +1,6 @@
 class Character {
 
-    constructor(x, y, w, h, name, design, speed) {
+    constructor(x, y, w, h, design, speed) {
         this.x = x;
         this.y = y;
         this.w = w;
@@ -8,7 +8,6 @@ class Character {
 
         this.radius = w / 2
 
-        this.name = name;
         this.design = design;
 
         this.speed = speed;

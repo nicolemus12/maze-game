@@ -138,7 +138,7 @@ class Maze {
 
         // select random enemy from enemies array
         const index = Math.floor(Math.random() * this.enemies.length);
-        let enemy = new Enemy(490, 150, 30, 30, "enemy1", this.enemies[index])
+        let enemy = new Enemy(490, 150, 30, 30, this.enemies[index])
         levelData.set("enemy", enemy);
 
         let lines = [];
