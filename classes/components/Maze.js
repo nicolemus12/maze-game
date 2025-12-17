@@ -153,6 +153,12 @@ class Maze {
         levelData.set("recipeIngredients", recipeIngredients);
 
         let levelPowerUps = [];
+        levelPowerUps.push(
+            new PowerUp(200, 480, 50, 50, "heart", this.powerUps.get("heart"))
+        )
+        levelPowerUps.push(
+            new PowerUp(480, 410, 50, 50, "speed", this.powerUps.get("speed"))
+        )
         levelData.set("levelPowerUps", levelPowerUps);
 
         this.levels.set("3", levelData);

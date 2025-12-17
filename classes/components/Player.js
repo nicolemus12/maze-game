@@ -74,7 +74,6 @@ class Player {
 
     //move: allows player movement using WASD keys at the players speed
     move(maze) {
-
         let dx = 0;
         let dy = 0;
 
@@ -111,7 +110,7 @@ class Player {
         this.x = nextPlayerX;
         this.y = nextPlayerY;
 
-        // this.levelUp(maze)
+        this.levelUp(maze)
     }
 
     collidesWithMaze(nextPlayerX, nextPlayerY, maze) {
@@ -134,6 +133,15 @@ class Player {
                 return collectable;
             }
         }
+
+        for (let collectable of maze.levelPowerUps) {
+            const d = collectable.distanceToPlayer(nextPlayerX, nextPlayerY)
+            const combinedRadius = this.radius + collectable.radius
+
+            if (d < combinedRadius) {
+                return collectable;
+            }
+        }
         return null;
     }
 
@@ -143,13 +151,23 @@ class Player {
                 this.collectedIngredients.push(collectable.name);
                 break;
             case "powerUp":
+                this.applyPowerUp(collectable)
                 break;
         }
 
         collectable.isCollected = true;
 
-        console.log(this.collectedIngredients)
+    }
 
+    applyPowerUp(collectable) {
+        switch(collectable.name) {
+            case "heart":
+                this.lives += 1;
+                break;
+            case "speed":
+                this.speed += 1;
+                break;
+        }
     }
 
     levelUp(maze) {
