@@ -14,6 +14,9 @@ class Player extends Character {
         this.name = name;
         this.lives = 3; // sets initial lives to 3
 
+        this.hitCooldown = 2000;
+        this.lastHitTime = -Infinity;
+
         this.powerUps = []; // initialises player with no collected power ups
         this.collectedIngredients = []; // initialises player with no collected ingredients 
     }
@@ -47,6 +50,16 @@ class Player extends Character {
             return;
         }
 
+        const now = Date.now();
+
+        if (this.collidesWithEnemy(nextPlayerX, nextPlayerY, maze) && now - this.lastHitTime >= this.hitCooldown) {
+            this.lives -= 1;
+            if(this.lives <= 0) {
+                this.gameOver();
+            }
+            this.lastHitTime = now;
+        }
+
         const collectable = this.getCollidingCollectable(nextPlayerX, nextPlayerY, maze)
 
         if (collectable && !collectable.isCollected) {
@@ -67,6 +80,19 @@ class Player extends Character {
                 return true;
             }
         }
+        return false;
+    }
+
+    collidesWithEnemy(nextPlayerX, nextPlayerY, maze) {
+        for (let enemy of maze.enemies) {
+            let d = enemy.distanceToPlayer(nextPlayerX, nextPlayerY);
+            let combinedRadius = this.radius + enemy.radius;
+
+            if (d < combinedRadius) {
+                return true;
+            }
+        }
+
         return false;
     }
 
@@ -159,6 +185,10 @@ class Player extends Character {
                     break;
             }
         }
+    }
+
+    gameOver(maze) {
+        console.log("Game Over")
     }
 
 }

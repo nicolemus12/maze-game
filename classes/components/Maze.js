@@ -15,6 +15,7 @@ class Maze {
         this.lines = []; // array to store lines (walls of a maze) in a level 
         this.recipeIngredients = []; // array to store list of ingredients for a recipe
         this.levelPowerUps = []; // array to store powerups in a level
+        this.levelEnemies = []; // array to store enmeis in a level
     }
 
     // loops through the array of lines 
@@ -55,9 +56,10 @@ class Maze {
         }
 
         // display and move enemy
-        const enemy = this.levels.get(this.level).get("enemy");
-        enemy.displayCharacter();
-        enemy.move();
+        this.enemies = this.levels.get(this.level).get("enemy");
+        for (let i = 0; i < this.enemies.length; i++) {
+            this.enemies[i].displayCharacter();
+        }
 
         // loop drawing each line in the lines array
         this.lines = this.levels.get(this.level).get("lines");
@@ -138,8 +140,9 @@ class Maze {
 
         // select random enemy from enemies array
         const index = Math.floor(Math.random() * this.enemies.length);
-        let enemy = new Enemy(490, 150, 30, 30, this.enemies[index])
-        levelData.set("enemy", enemy);
+        let enemies = [];
+        enemies.push(new Enemy(490, 150, 30, 30, this.enemies[index]))
+        levelData.set("enemy", enemies);
 
         let lines = [];
         lines.push(new Line(100, 90, 0, 90));
