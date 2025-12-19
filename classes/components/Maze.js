@@ -9,7 +9,7 @@ class Maze {
         this.powerUps = powerUps; // map of all available poweups
         this.enemies = enemies; // list of all available enemies
 
-        this.level = "6";
+        this.level = "5";
         this.levels = new Map(); // map contain data for each level
 
         this.defaultLine = new Line(0, 550, 500, 550)
@@ -243,6 +243,9 @@ class Maze {
         levelData.set("recipeIngredients", recipeIngredients);
 
         let levelPowerUps = [];
+        levelPowerUps.push(
+            new PowerUp(490, 490, 50, 50, "speed", this.powerUps.get("speed"))
+        )
         levelData.set("levelPowerUps", levelPowerUps);
 
         this.levels.set("5", levelData);
@@ -291,6 +294,12 @@ class Maze {
         levelData.set("recipeIngredients", recipeIngredients);
 
         let levelPowerUps = [];
+        levelPowerUps.push(
+            new PowerUp(350, 80, 50, 50, "heart", this.powerUps.get("heart"))
+        )
+        levelPowerUps.push(
+            new PowerUp(80, 490, 50, 50, "speed", this.powerUps.get("speed"))
+        )
         levelData.set("levelPowerUps", levelPowerUps);
 
         this.levels.set("6", levelData);
