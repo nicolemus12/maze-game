@@ -9,7 +9,7 @@ class Maze {
         this.powerUps = powerUps; // map of all available poweups
         this.enemies = enemies; // list of all available enemies
 
-        this.level = "1";
+        this.level = "6";
         this.levels = new Map(); // map contain data for each level
 
         this.defaultLine = new Line(0, 550, 500, 550)
@@ -20,41 +20,8 @@ class Maze {
     }
 
     // loops through the array of lines 
-    drawMaze(level) {
+    drawMaze() {
         strokeWeight(6);
-
-        // switch statement which adds lines to the lines property depending on the level
-        switch (level) {
-            case '1':
-                this.level = "1"
-                break;
-            case '2':
-                this.level = "2"
-                break;
-            case '3':
-                this.level = "3"
-                break;
-            case '4':
-                this.level = "4"
-                break;
-            case '5':
-                this.level = "5"
-                break;
-            case '6':
-                this.level = "6"
-                break;
-            case '7':
-                this.level = "7"
-                break;
-            case '8':
-                this.level = "8"
-                break;
-            case '9':
-                this.level = "9"
-                break;
-            default:
-                break;
-        }
 
         // display and move enemy
         this.enemies = this.levels.get(this.level).get("enemy");
@@ -85,7 +52,7 @@ class Maze {
 
     // Easy Levels
     level1() {
-        //ham sandwich
+        // recipe: ham sandwich
         let levelData = new Map();
 
         let lines = [];
@@ -116,6 +83,7 @@ class Maze {
     }
 
     level2() {
+        // recipe: sushi nigiri
         let levelData = new Map();
 
         let lines = [];
@@ -131,6 +99,12 @@ class Maze {
         levelData.set("lines", lines);
 
         let recipeIngredients = [];
+        recipeIngredients.push(
+            new Ingredient(400, 400, 50, 50, "salmon", this.ingredients.get("salmon"))
+        );
+        recipeIngredients.push(
+            new Ingredient(40, 480, 50, 50, "sushi_rice", this.ingredients.get("sushi_rice"))
+        )
         levelData.set("recipeIngredients", recipeIngredients);
 
         let levelPowerUps = [];
@@ -140,14 +114,8 @@ class Maze {
     }
 
     level3() {
-        filter(INVERT);
+        // recipe: Cheeseburger
         let levelData = new Map();
-
-        // select random enemy from enemies array
-        const index = Math.floor(Math.random() * this.enemies.length);
-        let enemies = [];
-        enemies.push(new Enemy(490, 150, 60, 60, this.enemies[index]))
-        levelData.set("enemy", enemies);
 
         let lines = [];
         lines.push(this.defaultLine);
@@ -188,7 +156,15 @@ class Maze {
 
     // Medium levels
     level4() {
+        // recipe: chicken taco
         let levelData = new Map();
+
+        // select random enemy from enemies array
+        const index = Math.floor(Math.random() * this.enemies.length);
+        let enemies = [];
+        enemies.push(new Enemy(490, 150, 60, 60, this.enemies[index]))
+        enemies.push(new Enemy(40, 180, 60, 60, this.enemies[index]))
+        levelData.set("enemy", enemies);
 
         let lines = [];
         lines.push(this.defaultLine);
@@ -204,16 +180,42 @@ class Maze {
         levelData.set("lines", lines);
 
         let recipeIngredients = [];
+        recipeIngredients.push(
+            new Ingredient(60, 380, 50, 50, "chicken_thighs", this.ingredients.get("chicken_thighs"))
+        )
+        recipeIngredients.push(
+            new Ingredient(150, 200, 50, 50, "tortilla", this.ingredients.get("tortilla"))
+        )
+        recipeIngredients.push(
+            new Ingredient(250, 480, 50, 50, "salsa", this.ingredients.get("salsa"))
+        )
+        recipeIngredients.push(
+            new Ingredient(450, 60, 50, 50, "black_bean", this.ingredients.get("black_bean"))
+        )
         levelData.set("recipeIngredients", recipeIngredients);
 
         let levelPowerUps = [];
+        levelPowerUps.push(
+            new PowerUp(350, 80, 50, 50, "heart", this.powerUps.get("heart"))
+        )
+        levelPowerUps.push(
+            new PowerUp(80, 490, 50, 50, "speed", this.powerUps.get("speed"))
+        )
         levelData.set("levelPowerUps", levelPowerUps);
 
         this.levels.set("4", levelData);
     }
 
     level5() {
+        // recipe: Sadza ne Nyama
         let levelData = new Map();
+
+        const index = Math.floor(Math.random() * this.enemies.length);
+        let enemies = [];
+        enemies.push(new Enemy(25, 300, 60, 60, this.enemies[index]))
+        enemies.push(new Enemy(415, 350, 60, 60, this.enemies[index]))
+        enemies.push(new Enemy(310, 50, 60, 60, this.enemies[index]))
+        levelData.set("enemy", enemies);
 
         let lines = [];
         lines.push(this.defaultLine);
@@ -226,6 +228,18 @@ class Maze {
         levelData.set("lines", lines);
 
         let recipeIngredients = [];
+        recipeIngredients.push(
+            new Ingredient(40, 500, 50, 50, "cornmeal", this.ingredients.get("cornmeal"))
+        )
+        recipeIngredients.push(
+            new Ingredient(150, 200, 50, 50, "green_veg", this.ingredients.get("green_veg"))
+        )
+        recipeIngredients.push(
+            new Ingredient(250, 480, 50, 50, "beef", this.ingredients.get("beef"))
+        )
+        recipeIngredients.push(
+            new Ingredient(470, 250, 50, 50, "tomato", this.ingredients.get("tomato"))
+        )
         levelData.set("recipeIngredients", recipeIngredients);
 
         let levelPowerUps = [];
@@ -236,7 +250,14 @@ class Maze {
     }
 
     level6() {
+        // recipe: carbonara 
         let levelData = new Map();
+
+        const index = Math.floor(Math.random() * this.enemies.length);
+        let enemies = [];
+        enemies.push(new Enemy(100, 135, 60, 60, this.enemies[index]))
+        enemies.push(new Enemy(400, 450, 60, 60, this.enemies[index]))
+        levelData.set("enemy", enemies);
 
         let lines = [];
         lines.push(this.defaultLine);
@@ -252,6 +273,21 @@ class Maze {
         levelData.set("lines", lines);
 
         let recipeIngredients = [];
+        recipeIngredients.push(
+            new Ingredient(150, 255, 50, 50, "peppercorn", this.ingredients.get("peppercorn"))
+        )
+        recipeIngredients.push(
+            new Ingredient(460, 100, 50, 50, "cheese", this.ingredients.get("cheese"))
+        )
+        recipeIngredients.push(
+            new Ingredient(200, 50, 50, 50, "pancetta", this.ingredients.get("pancetta"))
+        )
+        recipeIngredients.push(
+            new Ingredient(40, 500, 50, 50, "egg", this.ingredients.get("egg"))
+        )
+        recipeIngredients.push(
+            new Ingredient(490, 490, 50, 50, "spaghetti", this.ingredients.get("spaghetti"))
+        )
         levelData.set("recipeIngredients", recipeIngredients);
 
         let levelPowerUps = [];
@@ -263,6 +299,7 @@ class Maze {
 
     // Hard Levels
     level7() {
+        // recipe: 
         let levelData = new Map();
 
         let lines = [];
@@ -280,6 +317,7 @@ class Maze {
     }
 
     level8() {
+        // recipe: 
         let levelData = new Map();
 
         let lines = [];
@@ -296,6 +334,7 @@ class Maze {
     }
 
     level9() {
+        // recipe: 
         let levelData = new Map();
 
         let lines = [];

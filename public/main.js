@@ -33,11 +33,37 @@ function preload() {
   powerUps.set("speed", loadImage("public/images/powerups/lightning.png"));
 
   // load ingredient images
+  // recipe: ham sandwich
+  ingredients.set("bread_loaf", loadImage("public/images/ingredients/bread_loaf.png"))
+  ingredients.set("ham_slices", loadImage("public/images/ingredients/ham_slices.png"))
+
+  // recipe: sushi nigiri
+  ingredients.set("sushi_rice", loadImage("public/images/ingredients/sushi_rice.png"))
+  ingredients.set("salmon", loadImage("public/images/ingredients/salmon.png"))
+
+  // recipe: cheese
   ingredients.set("beef_patty", loadImage("public/images/ingredients/beef_patty.png"))
   ingredients.set("burger_buns", loadImage("public/images/ingredients/burger_buns.png"))
   ingredients.set("cheese_slices", loadImage("public/images/ingredients/cheese_slices.png"))
-  ingredients.set("bread_loaf", loadImage("public/images/ingredients/bread_loaf.png"))
-  ingredients.set("ham_slices", loadImage("public/images/ingredients/ham_slices.png"))
+
+  // recipe: chicken tacos
+  ingredients.set("tortilla", loadImage("public/images/ingredients/tortilla.png"))
+  ingredients.set("salsa", loadImage("public/images/ingredients/salsa.png"))
+  ingredients.set("chicken_thighs", loadImage("public/images/ingredients/chicken_thighs.png"))
+  ingredients.set("black_bean", loadImage("public/images/ingredients/black_bean.png"))
+
+  // recipe: Sadza ne Nyama
+  ingredients.set("cornmeal", loadImage("public/images/ingredients/cornmeal.png"))
+  ingredients.set("beef", loadImage("public/images/ingredients/beef.png"))
+  ingredients.set("tomato", loadImage("public/images/ingredients/tomato.png"))
+  ingredients.set("green_veg", loadImage("public/images/ingredients/green_veg.png"))
+
+  // recipe: Carbonara
+  ingredients.set("pancetta", loadImage("public/images/ingredients/pancetta.png"))
+  ingredients.set("cheese", loadImage("public/images/ingredients/cheese.png"))
+  ingredients.set("peppercorn", loadImage("public/images/ingredients/peppercorn.png"))
+  ingredients.set("egg", loadImage("public/images/ingredients/egg.png"))
+  ingredients.set("spaghetti", loadImage("public/images/ingredients/spaghetti.png"))
 
   // load enemy images
   enemies.push(loadImage("public/images/avatars/enemy1.png"));
@@ -96,6 +122,9 @@ function headsUpDisplay() {
     gameOver();
   }
 
+  textSize(25);
+  text("Level " + maze.level, 400, 585)
+
 }
 
 function gameOver() {
@@ -116,4 +145,3 @@ function resetPlayer() {
   player.speed = 3;
   player.collectedIngredients = [];
 }
-

@@ -148,38 +148,56 @@ class Player extends Character {
         if (this.collectedIngredients.length == totalIngredients) {
             switch (maze.level) {
                 case "1":
+                    this.x = 30;
+                    this.y = 40;
                     this.collectedIngredients = [];
                     maze.level = "2";
                     break;
                 case "2":
+                    this.x = 30;
+                    this.y = 40;
                     this.collectedIngredients = [];
                     maze.level = "3";
                     break;
                 case "3":
+                    this.x = 30;
+                    this.y = 40;
                     this.collectedIngredients = [];
                     maze.level = "4";
                     break;
                 case "4":
+                    this.x = 30;
+                    this.y = 40;
                     this.collectedIngredients = [];
                     maze.level = "5";
                     break;
                 case "5":
+                    this.x = 30;
+                    this.y = 40;
                     this.collectedIngredients = [];
                     maze.level = "6";
                     break;
                 case "6":
+                    this.x = 30;
+                    this.y = 40;
                     this.collectedIngredients = [];
                     maze.level = "7";
                     break;
                 case "7":
+                    this.x = 30;
+                    this.y = 40;
                     this.collectedIngredients = [];
                     maze.level = "8";
                     break;
                 case "8":
+                    this.x = 30;
+                    this.y = 40;
                     this.collectedIngredients = [];
                     maze.level = "9";
                     break;
                 case "9":
+                    this.x = 30;
+                    this.y = 40;
                     this.collectedIngredients = [];
                     console.log("YOU WIN!")
                     break;
