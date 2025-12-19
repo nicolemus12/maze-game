@@ -68,6 +68,9 @@ function preload() {
   // load enemy images
   enemies.push(loadImage("public/images/avatars/enemy1.png"));
 
+  // load HUD images
+  bookImg = loadImage('public/images/HUD images/open_book.png');
+
 }
 
 /* 
@@ -75,7 +78,7 @@ This is a p5.js method that runs once at the beginning of the program.
 It is used to initialise the canvas and the objects needed for the program.
 */
 function setup() {
-  createCanvas(500, 600);
+  createCanvas(500, 630);
 
   // creates a player object
   player = new Player(30, 40, 50, 50, "celina", celina)
@@ -97,6 +100,13 @@ function setup() {
   let button = createButton('Restart Game');
   button.mousePressed(restartGame);
 
+  //recipe book button
+  let RecipeButton
+  RecipeButton = createImg('public/images/HUD images/chef_book.png');
+  RecipeButton.position(150, 550,);
+  RecipeButton.size(90, 90);
+  RecipeButton.mouseClicked(recipeBook);
+
 }
 
 /*
@@ -112,9 +122,14 @@ function draw() {
   headsUpDisplay()
 }
 
+function recipeBook() {
+  image(bookImg, 0, 0);
+}
+
 function headsUpDisplay() {
   for (let i = 1; i <= player.lives; i++) {
     image(powerUps.get("heart"), (i * 25) - 25, 550, 50, 50);
+
   }
 
   if (player.lives <= 0) {
@@ -125,6 +140,14 @@ function headsUpDisplay() {
   text("Level " + maze.level, 400, 585)
 
 }
+
+//main menu screen
+function mainMenu() {
+  background(blue);
+  text('Navigate through the maze and collected the required ingredients. Avoid the enemies!');
+
+}
+
 
 function gameOver() {
   player.speed = 0;
