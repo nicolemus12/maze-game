@@ -9,7 +9,7 @@ class Maze {
         this.powerUps = powerUps; // map of all available poweups
         this.enemies = enemies; // list of all available enemies
 
-        this.level = "5";
+        this.level = "1";
         this.levels = new Map(); // map contain data for each level
 
         this.defaultLine = new Line(0, 550, 500, 550)
@@ -22,6 +22,38 @@ class Maze {
     // loops through the array of lines 
     drawMaze() {
         strokeWeight(6);
+
+        switch (this.level) {
+            case '1':
+                background(143, 255, 143);
+                break;
+            case '2':
+                background(143, 255, 143);
+                break;
+            case '3':
+                background(143, 255, 143);
+                break;
+            case '4':
+                background(191, 234, 255);
+                break;
+            case '5':
+                background(191, 234, 255);
+                break;
+            case '6':
+                background(191, 234, 255);
+                break;
+            case '7':
+                background(255, 122, 123);
+                break;
+            case '8':
+                background(255, 122, 123);
+                break;
+            case '9':
+                background(255, 122, 123);
+                break;
+            default:
+                break;
+        }
 
         // display and move enemy
         this.enemies = this.levels.get(this.level).get("enemy");
