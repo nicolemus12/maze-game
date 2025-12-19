@@ -30,7 +30,7 @@ function preload() {
 
   // load powerUp images
   powerUps.set("heart", loadImage("public/images/powerups/heart.png"));
-  powerUps.set("speed",loadImage("public/images/powerups/lightning.png"));
+  powerUps.set("speed", loadImage("public/images/powerups/lightning.png"));
 
   // load ingredient images
   ingredients.set("beef_patty", loadImage("public/images/ingredients/beef_patty.png"))
@@ -40,8 +40,7 @@ function preload() {
   ingredients.set("ham_slices", loadImage("public/images/ingredients/ham_slices.png"))
 
   // load enemy images
-  enemies.push(loadImage("public/images/ingredients/chicken_thighs.png"));
-  enemies.push(loadImage("public/images/ingredients/tortilla.png"))
+  enemies.push(loadImage("public/images/avatars/enemy1.png"));
 
 }
 
@@ -50,14 +49,14 @@ This is a p5.js method that runs once at the beginning of the program.
 It is used to initialise the canvas and the objects needed for the program.
 */
 function setup() {
-  createCanvas(500, 500);
+  createCanvas(500, 600);
 
   // creates a player object
   player = new Player(30, 40, 50, 50, "celina", celina)
 
   // creates a maze object
   maze = new Maze(ingredients, powerUps, enemies);
-  
+
   // load maze levels
   maze.level1();
   maze.level2();
@@ -69,6 +68,9 @@ function setup() {
   maze.level8();
   maze.level9();
 
+  let button = createButton('Restart Game');
+  button.mousePressed(restartGame);
+
 }
 
 /*
@@ -78,7 +80,40 @@ This will be used to draw graphics and animations and to update the game state b
 function draw() {
   background(143, 255, 143);
   maze.drawMaze();
-  
+
   player.displayCharacter(); // displays character
   player.move(maze); // makes character move if wasd keys r held
+
+  headsUpDisplay()
 }
+
+function headsUpDisplay() {
+  for (let i = 1; i <= player.lives; i++) {
+    image(powerUps.get("heart"), (i * 25) - 25, 550, 50, 50);
+  }
+
+  if (player.lives <= 0) {
+    gameOver();
+  }
+
+}
+
+function gameOver() {
+  player.speed = 0;
+  textSize(25);
+  text("Game Over", 10, 585)
+}
+
+function restartGame() {
+  resetPlayer();
+  maze.level = "1";
+}
+
+function resetPlayer() {
+  player.x = 30;
+  player.y = 40;
+  player.lives = 3;
+  player.speed = 3;
+  player.collectedIngredients = [];
+}
+

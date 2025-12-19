@@ -14,7 +14,7 @@ class Player extends Character {
         this.name = name;
         this.lives = 3; // sets initial lives to 3
 
-        this.hitCooldown = 2000;
+        this.hitCooldown = 1000;
         this.lastHitTime = -Infinity;
 
         this.powerUps = []; // initialises player with no collected power ups
@@ -54,9 +54,7 @@ class Player extends Character {
 
         if (this.collidesWithEnemy(nextPlayerX, nextPlayerY, maze) && now - this.lastHitTime >= this.hitCooldown) {
             this.lives -= 1;
-            if(this.lives <= 0) {
-                this.gameOver();
-            }
+            console.log(this.lives)
             this.lastHitTime = now;
         }
 
@@ -84,13 +82,15 @@ class Player extends Character {
     }
 
     collidesWithEnemy(nextPlayerX, nextPlayerY, maze) {
-        for (let enemy of maze.enemies) {
+        if(maze.enemies) {
+            for (let enemy of maze.enemies) {
             let d = enemy.distanceToPlayer(nextPlayerX, nextPlayerY);
             let combinedRadius = this.radius + enemy.radius;
 
             if (d < combinedRadius) {
                 return true;
             }
+        }
         }
 
         return false;
@@ -132,7 +132,7 @@ class Player extends Character {
     }
 
     applyPowerUp(collectable) {
-        switch(collectable.name) {
+        switch (collectable.name) {
             case "heart":
                 this.lives += 1;
                 break;
@@ -185,10 +185,6 @@ class Player extends Character {
                     break;
             }
         }
-    }
-
-    gameOver(maze) {
-        console.log("Game Over")
     }
 
 }

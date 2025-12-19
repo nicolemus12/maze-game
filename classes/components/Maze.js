@@ -9,9 +9,10 @@ class Maze {
         this.powerUps = powerUps; // map of all available poweups
         this.enemies = enemies; // list of all available enemies
 
-        this.level = "3";
+        this.level = "1";
         this.levels = new Map(); // map contain data for each level
 
+        this.defaultLine = new Line(0, 550, 500, 550)
         this.lines = []; // array to store lines (walls of a maze) in a level 
         this.recipeIngredients = []; // array to store list of ingredients for a recipe
         this.levelPowerUps = []; // array to store powerups in a level
@@ -57,8 +58,10 @@ class Maze {
 
         // display and move enemy
         this.enemies = this.levels.get(this.level).get("enemy");
-        for (let i = 0; i < this.enemies.length; i++) {
-            this.enemies[i].displayCharacter();
+        if (this.enemies) {
+            for (let i = 0; i < this.enemies.length; i++) {
+                this.enemies[i].displayCharacter();
+            }
         }
 
         // loop drawing each line in the lines array
@@ -86,6 +89,7 @@ class Maze {
         let levelData = new Map();
 
         let lines = [];
+        lines.push(this.defaultLine);
         lines.push(new Line(120, 2, 120, 350));
         lines.push(new Line(210, 2, 210, 120));
         lines.push(new Line(250, 250, 250, 350));
@@ -115,6 +119,7 @@ class Maze {
         let levelData = new Map();
 
         let lines = [];
+        lines.push(this.defaultLine);
         lines.push(new Line(120, 2, 120, 100));
         lines.push(new Line(300, 80, 300, 180));
         lines.push(new Line(200, 300, 200, 410));
@@ -141,10 +146,11 @@ class Maze {
         // select random enemy from enemies array
         const index = Math.floor(Math.random() * this.enemies.length);
         let enemies = [];
-        enemies.push(new Enemy(490, 150, 30, 30, this.enemies[index]))
+        enemies.push(new Enemy(490, 150, 60, 60, this.enemies[index]))
         levelData.set("enemy", enemies);
 
         let lines = [];
+        lines.push(this.defaultLine);
         lines.push(new Line(100, 90, 0, 90));
         lines.push(new Line(100, 220, 0, 220));
         lines.push(new Line(100, 360, 0, 360));
@@ -185,6 +191,16 @@ class Maze {
         let levelData = new Map();
 
         let lines = [];
+        lines.push(this.defaultLine);
+        lines.push(new Line(300, 2, 300, 250));
+        lines.push(new Line(200, 110, 200, 250));
+        lines.push(new Line(300, 350, 300, 420));
+        lines.push(new Line(200, 350, 200, 420));
+        lines.push(new Line(200, 350, 2, 350));
+        lines.push(new Line(200, 250, 110, 250));
+        lines.push(new Line(200, 110, 2, 110));
+        lines.push(new Line(390, 250, 300, 250));
+        lines.push(new Line(500, 350, 300, 350));
         levelData.set("lines", lines);
 
         let recipeIngredients = [];
@@ -200,6 +216,13 @@ class Maze {
         let levelData = new Map();
 
         let lines = [];
+        lines.push(this.defaultLine);
+        lines.push(new Line(110, 2, 110, 400));
+        lines.push(new Line(220, 100, 220, 500));
+        lines.push(new Line(330, 2, 330, 400));
+        lines.push(new Line(420, 400, 420, 500));
+        lines.push(new Line(420, 200, 420, 300));
+        lines.push(new Line(500, 300, 420, 300));
         levelData.set("lines", lines);
 
         let recipeIngredients = [];
@@ -216,6 +239,16 @@ class Maze {
         let levelData = new Map();
 
         let lines = [];
+        lines.push(this.defaultLine);
+        lines.push(new Line(200, 110, 200, 300));
+        lines.push(new Line(110, 230, 110, 300));
+        lines.push(new Line(110, 400, 110, 500));
+        lines.push(new Line(380, 300, 380, 400));
+        lines.push(new Line(400, 2, 400, 200));
+        lines.push(new Line(320, 2, 320, 200));
+        lines.push(new Line(200, 110, 2, 110));
+        lines.push(new Line(110, 300, 380, 300));
+        lines.push(new Line(200, 400, 380, 400));
         levelData.set("lines", lines);
 
         let recipeIngredients = [];
@@ -233,6 +266,7 @@ class Maze {
         let levelData = new Map();
 
         let lines = [];
+        lines.push(this.defaultLine);
         levelData.set("lines", lines);
 
         let recipeIngredients = [];
@@ -249,6 +283,7 @@ class Maze {
         let levelData = new Map();
 
         let lines = [];
+        lines.push(this.defaultLine);
         levelData.set("lines", lines);
 
         let recipeIngredients = [];
@@ -264,6 +299,7 @@ class Maze {
         let levelData = new Map();
 
         let lines = [];
+        lines.push(this.defaultLine);
         levelData.set("lines", lines);
 
         let recipeIngredients = [];
